@@ -1,0 +1,42 @@
+<% include header.ejs %>
+<div class="main">
+    <div class="signup-panel panel">
+        <div class="panel-header">
+            <ul class="breadcrumb">
+                <li><a href="/" class="breadcrumb">主页</a></li>/
+                <li>注册</li>
+            </ul>
+        </div>
+        <% include notification.ejs%>
+        <form method="post" action="/signup" class="signup-form" enctype="multipart/form-data">
+            <div class="field">
+                <label for="name">用户名*</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="field">
+                <label for="password">密码*</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="field">
+                <label for="repassword">重复密码*</label>
+                <input type="password" id="repassword" name="repassword">
+            </div>
+            <div class="field">
+                <label>头像</label>
+                <input type="file" name="avatar">
+            </div>
+            <!--<div class="field">-->
+                <!--<label for="intro">个人简介</label>-->
+                <!--<textarea id="intro" rows="5"></textarea>-->
+            <!--</div>-->
+            <div class="field">
+                <label for=""></label>
+                <button type="submit" class="button-default">注册</button>
+            </div>
+
+        </form>
+    </div>
+    <% include side.ejs%>
+</div>
+
+<% include footer.ejs %>
