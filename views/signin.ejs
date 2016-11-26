@@ -1,0 +1,30 @@
+<% include header.ejs %>
+<div class="main">
+    <div class="signup-panel panel">
+        <div class="panel-header">
+            <ul class="breadcrumb">
+                <li><a href="/" class="breadcrumb">主页</a></li>/
+                <li>登录</li>
+            </ul>
+        </div>
+        <% include notification.ejs%>
+        <form method="post" action="/signin" class="signup-form">
+            <div class="field">
+                <label for="name">用户名</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="field">
+                <label for="password">密码</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="field">
+                <label for=""></label>
+                <button type="submit" class="button-default">登录</button>
+            </div>
+
+        </form>
+    </div>
+    <% include side.ejs%>
+</div>
+
+<% include footer.ejs %>

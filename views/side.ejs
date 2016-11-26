@@ -1,0 +1,17 @@
+<div class="side">
+    <% if (user){ %>
+    <div class="side-panel panel">
+        <div class="panel-header">
+            <p>个人信息</p>
+        </div>
+        <div class="user-intro">
+            <img class="avatar" src="/img/<%= user.avatar %>" alt="" width="48" height="48">
+            <a href="/user/<%= user.name %>"><%= user.name %></a>
+            <p>积分0</p>
+            <p>这里是个性签名</p>
+            <button class="button-default">发布话题</button>
+        </div>
+    </div>
+    <% }else { %>
+    <% } %>
+</div>
