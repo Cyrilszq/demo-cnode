@@ -1,8 +1,55 @@
 <% include header.ejs %>
-    <div class="main">
-        <% include side.ejs%>
-        <div class="panel list-panel">
+<div class="main">
+    <% include side.ejs %>
+    <div class="panel list-panel panel-left">
+        <div class="panel-header">
+            <ul class="tabs">
+                <% tabs.forEach(function (t) {
+                    var value = t[0], text = t[1]; %>
+                <li><a href="/?tab=<%= value %>" class="<%= value === currentTab ? 'current-tab' : '' %>"><%= text %></a></li>
+                <% }); %>
+            </ul>
+        </div>
+        <% topics.forEach(function (topic) { %>
+        <ul class="topic-list">
+            <li class="list-cell">
+                <div>
+                    <a href="/user/<%= topic.author.name %>">
+                        <img src="/img/<%= topic.author.avatar %>" title="<%= topic.author.name %>" width="30"
+                             height="30">
+                    </a>
+                </div>
+                <div class="pv">
+                    <span title="回复数"><%= topic.comment %></span>
+                    <span>/</span>
+                    <span title="浏览次数"><%= topic.pv %></span>
+                </div>
+                <div class="topic-tab-wrap">
+                    <span class="topic-tab"><%= topic.tab %></span>
+                </div>
+                <div class="topic-title-wrap">
+                    <a href="/topic/<%= topic._id %>" class="topic-title" title="<%= topic.title %>">
+                        <%= topic.title %>
+                    </a>
+                </div>
+            </li>
+        </ul>
+        <% }); %>
 
+        <div class="pagination">
+            <div><a href="/?tab=<%= currentTab %>&page=1" >首页</a></div>
+            <% if (pageRender.start != 1){%>
+            <div><a href="javascript:;" >...</a></div>
+            <%}%>
+            <% for (var i = pageRender.start;i <= pageRender.end;i++){ %>
+            <div><a href="/?tab=<%= currentTab %>&page=<%= i%>"><%= i%></a></div>
+            <% } %>
+            <% if (pageRender.end != pageNum){%>
+            <div><a href="javascript:;" >...</a></div>
+            <%}%>
+            <div><a href="/?tab=<%= currentTab %>&page=<%= pageNum%>" >末页</a></div>
         </div>
     </div>
+</div>
+
 <% include footer.ejs %>

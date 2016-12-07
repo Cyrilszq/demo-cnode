@@ -1,0 +1,10 @@
+<%include header.ejs%>
+<% topics.forEach(function (topic) {%>
+  <%= topic.title%>
+<%})%>
+
+
+<% comments.forEach(function (comment) {%>
+<%= comment.title%>
+<%})%>
+<%include footer.ejs%>

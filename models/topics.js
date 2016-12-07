@@ -5,8 +5,9 @@ var Schema = mongoose.Schema;
 var TopicSchema = new Schema({
     title: {type: String},
     content: {type: String},
-    author: {type: String},
+    author: {name:{type:String},avatar:{type:String}},
     pv: {type: Number},
+    tab:{type:String},
     comment: {type: Number, default: 0},
     create_at: {type: Date, default: Date.now},
     update_at: {type: Date, default: Date.now}

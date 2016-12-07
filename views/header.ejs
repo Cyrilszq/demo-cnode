@@ -2,30 +2,39 @@
 <html>
 <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <link rel="stylesheet" href="/stylesheets/markdown-style.css">
+    <script src="/javascripts/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 </head>
 <body>
 
 <header>
-    <div class="header-container">
-
+    <div class="header-container verticalcenter">
         <a href="/" class="cnode-logo">
             <img src="http://o4j806krb.qnssl.com/public/images/cnodejs_light.svg" alt="cnode logo">
         </a>
         <input type="text" class="header-search">
-        <ul class="nav">
-            <li><a href="">首页</a></li>
+        <a href="javascript:;" class="navbar-toggle" id="navbar-toggle">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+        <ul class="nav" id="nav">
+            <li><a href="/">首页</a></li>
             <li><a href="">新手入门</a></li>
             <li><a href="">API</a></li>
             <li><a href="">关于</a></li>
-            <% if(!user){%>
+            <% if(!user){ %>
             <li><a href="/signup">注册</a></li>
             <li><a href="/signin">登录</a></li>
-            <%} else {%>
+            <% } else { %>
             <li><a href="">设置</a></li>
             <li><a href="/signout">登出</a></li>
-            <%}%>
+            <% } %>
         </ul>
     </div>
 </header>
