@@ -1,4 +1,4 @@
-<div class="side">
+<div class="side clearfix">
     <% if (user){ %>
     <div class="side-panel panel">
         <div class="panel-header">
@@ -8,10 +8,27 @@
             <img class="avatar" src="/img/<%= user.avatar %>" alt="" width="48" height="48">
             <a href="/user/<%= user.name %>"><%= user.name %></a>
             <p>积分0</p>
-            <p>这里是个性签名</p>
-            <button class="button-default">发布话题</button>
+            <p>个性签名</p>
+            <a href="/topic/create"><button class="button-default">发布话题</button></a>
         </div>
     </div>
     <% }else { %>
+
     <% } %>
+    <div class="side-panel panel">
+        <div class="panel-header">
+            <p>介绍</p>
+        </div>
+        <div>
+            <p style="padding: 10px">个人demo，参考<a href="https://github.com/cnodejs/nodeclub" target="_blank">nodeclub</a></p>
+        </div>
+    </div>
+    <div class="side-panel panel">
+        <div class="panel-header">
+            <p>客户端二维码</p>
+        </div>
+        <div class="app-download">
+            <img src="http://dn-cnode.qbox.me/FtG0YVgQ6iginiLpf9W4_ShjiLfU" alt="app二维码" width="200">
+        </div>
+    </div>
 </div>

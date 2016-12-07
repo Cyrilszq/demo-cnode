@@ -7,4 +7,5 @@ mongoose.connect(config.mongodb, function (err) {
 });
 exports.User = require('./users');
 exports.Topics = require('./topics');
+exports.Comment = require('./comment');
 

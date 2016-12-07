@@ -8,8 +8,8 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var config = require('config-lite');
-var routes = require('./routes');
-var pkg = require('./package.json')
+var routes = require('./routes/routes');
+var pkg = require('./package.json');
 
 
 var app = express();
@@ -44,13 +44,13 @@ app.locals.blog = {
   description: pkg.description
 };
 
-
 app.use(function (req, res, next) {
   res.locals.user = req.session.user;
   res.locals.success = req.flash('success').toString();
   res.locals.error = req.flash('error').toString();
   next();
 });
+//应用路由
 routes(app);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

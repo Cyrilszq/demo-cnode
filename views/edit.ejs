@@ -1,0 +1,41 @@
+<% include header.ejs %>
+
+<div class="main">
+    <% include side.ejs %>
+    <div class="panel panel-left">
+        <div class="panel-header">
+            <ul class="breadcrumb">
+                <li><a href="/" class="breadcrumb">主页</a></li>
+                /
+                <li>发布话题</li>
+            </ul>
+        </div>
+        <% include notification.ejs %>
+        <form method="post" action="/topic/create">
+            <div class="field create-field">
+                <span>选择板块：</span>
+                <select name="tab">
+                    <option value="分享">分享</option>
+                    <option value="问答">问答</option>
+                    <option value="招聘">招聘</option>
+                </select>
+            </div>
+
+            <div class="field create-field">
+                <input type="text" name="title" placeholder="标题字数10字以上">
+            </div>
+            <textarea name="content" id="edit-block"></textarea>
+            <div class="field create-field">
+                <button type="submit" class="button-default">提交</button>
+            </div>
+
+        </form>
+        <div id="test"></div>
+    </div>
+
+</div>
+
+<script>
+    new SimpleMDE({element: document.getElementById('edit-block')});
+</script>
+<% include footer.ejs %>

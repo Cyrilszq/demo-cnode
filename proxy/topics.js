@@ -6,11 +6,21 @@ exports.addTopic = function (data) {
 };
 
 exports.getTopicById = function (id) {
-    return Topic.findOneAndUpdate({_id: id},{$inc: {pv: 1}}).exec();
+    return Topic.findOneAndUpdate({_id: id}, {$inc: {pv: 1}}).exec();
 };
 
-exports.getTopics = function (author) {
-    var query = author ? {author: author} : {};
-    return Topic.find(query).exec();
-}
+exports.getTopics = function (options, page) {
+    var query = options ? options : {};
+    if (query.tab === 'all') query = {};
+    return Topic.find(query).skip((page - 1) * 15).sort('-updated_at').limit(15).exec();
+};
+
+exports.getTopicsCount = function () {
+    return Topic.count()
+};
+
+
+exports.incComment = function (id) {
+    return Topic.findOneAndUpdate({_id: id}, {$inc: {comment: 1}}).exec()
+};
 

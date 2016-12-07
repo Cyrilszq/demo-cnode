@@ -1,6 +1,7 @@
 <% include header.ejs %>
 <div class="main">
-    <div class="signup-panel panel">
+    <% include side.ejs%>
+    <div class="panel panel-left">
         <div class="panel-header">
             <ul class="breadcrumb">
                 <li><a href="/" class="breadcrumb">主页</a></li>/
@@ -10,21 +11,17 @@
         <% include notification.ejs%>
         <form method="post" action="/signin" class="signup-form">
             <div class="field">
-                <label for="name">用户名</label>
-                <input type="text" id="name" name="name">
+                <input type="text" id="name" name="name" placeholder="用户名">
             </div>
             <div class="field">
-                <label for="password">密码</label>
-                <input type="password" id="password" name="password">
+                <input type="password" id="password" name="password" placeholder="密码">
             </div>
             <div class="field">
-                <label for=""></label>
                 <button type="submit" class="button-default">登录</button>
             </div>
-
         </form>
     </div>
-    <% include side.ejs%>
+
 </div>
 
 <% include footer.ejs %>

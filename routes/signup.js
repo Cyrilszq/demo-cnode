@@ -68,17 +68,4 @@ router.post('/', checkNotLogin, upload.single('avatar'), function (req, res, nex
     })
 });
 
-// router.post('/checkname', function (req, res, next) {
-//     var name = req.body.name;
-//     User.getUserByName(name).then(function (result) {
-//         if (result) {
-//             res.json({code: 1})
-//         } else {
-//             res.json({
-//                 code: 2
-//             })
-//         }
-//     })
-// });
-
 module.exports = router;
