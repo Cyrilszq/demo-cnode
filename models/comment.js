@@ -10,8 +10,8 @@ var CommentSchema = new Schema({
 });
 
 
-CommentSchema.index({topic_id:1,update_at:1});
-CommentSchema.index({'author.name':1,update_at:1});
+CommentSchema.index({topic_id: 1, update_at: 1});
+CommentSchema.index({'author.name': 1, update_at: 1});
 
 
-module.exports = mongoose.model('Comment',CommentSchema);
+module.exports = mongoose.model('Comment', CommentSchema);

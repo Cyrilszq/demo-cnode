@@ -5,17 +5,17 @@ var User = require('../proxy').User;
 var checkNotLogin = require('../middlewares/check').checkNotLogin;
 
 // GET /signin 登录页
-router.get('/', checkNotLogin, function(req, res, next) {
-    res.render('signin',{title:'登录'});
+router.get('/', checkNotLogin, function (req, res, next) {
+    res.render('signin', {title: '登录'});
 });
 
 // POST /signin 处理用户登录
-router.post('/', checkNotLogin, function(req, res, next) {
+router.post('/', checkNotLogin, function (req, res, next) {
     var name = req.body.name;
     var password = req.body.password;
 
     User.getUserByName(name).then(function (user) {
-        if(!user){
+        if (!user) {
             req.flash('error', '用户不存在');
             return res.redirect('back');
         }
@@ -26,9 +26,10 @@ router.post('/', checkNotLogin, function(req, res, next) {
         }
         // 将一些信息保存在session中
         req.session.user = {
-            name:name,
-            _id:user._id,
-            avatar:user.avatar
+            name: name,
+            _id: user._id,
+            avatar: user.avatar,
+            score: user.score
         };
         // 跳转到主页
         res.redirect('/');

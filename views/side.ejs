@@ -7,7 +7,7 @@
         <div class="user-intro">
             <img class="avatar" src="/img/<%= user.avatar %>" alt="" width="48" height="48">
             <a href="/user/<%= user.name %>"><%= user.name %></a>
-            <p>积分0</p>
+            <p>积分<%= user.score%></p>
             <p>个性签名</p>
             <a href="/topic/create"><button class="button-default">发布话题</button></a>
         </div>

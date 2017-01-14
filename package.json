@@ -29,6 +29,7 @@
     "serve-favicon": "~2.3.0",
     "sha1": "^1.1.1",
     "supertest": "^2.0.1",
-    "winston": "^2.3.0"
+    "winston": "^2.3.0",
+    "xss": "^0.3.3"
   }
 }
