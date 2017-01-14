@@ -7,7 +7,7 @@ exports.addUser = function (data) {
 
 exports.getAll = function () {
     return User.find({}).exec();
-}
+};
 
 exports.getUserById = function (id) {
     return User.findOne({_id: id}).exec();  //返回一个promise对象
@@ -16,3 +16,12 @@ exports.getUserById = function (id) {
 exports.getUserByName = function (name) {
     return User.findOne({name: name}).exec(); //返回一个promise对象
 };
+
+exports.addCollect = function (id,topicTitle) {
+    return User.findOneAndUpdate({_id:id},{$push:{'collect':topicTitle}},{new:true}).exec();
+};
+
+exports.incScore = function (id, step) {
+    return User.findOneAndUpdate({_id: id}, {$inc: {score: step}},{new: true}).exec();
+};
+

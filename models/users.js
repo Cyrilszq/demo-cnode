@@ -1,11 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var UserSchema = new Schema({
-    name: {type: String, unique: true,required: true},
+    name: {type: String, unique: true, required: true},
     password: {type: String},
     avatar: {type: String}, //头像图片名称
+    score: {type: Number, default: 0},
+    collect:{type:Array},
     create_at: {type: Date, default: Date.now},
-    update_at: {type: Date, default: Date.now}
+    update_at: {type: Date, default: Date.now},
 });
 
 UserSchema.pre('save', function (next) {

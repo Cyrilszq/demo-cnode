@@ -108,9 +108,8 @@ header ul {
     margin: 0 auto;
 }
 
-header img {
-    width: 120px;
-    height: 30px;
+.cnode-logo h1{
+    display: inline;
     vertical-align: middle;
 }
 

@@ -8,7 +8,7 @@
             <div class="user-intro">
                 <img class="avatar" src="/img/<%= topic.author.avatar %>" alt="" width="48" height="48">
                 <a href="/user/<%= topic.author.name %>"><%= topic.author.name %></a>
-                <p>积分0</p>
+                <p>积分<%= score%></p>
                 <p>这里是个性签名</p>
             </div>
         </div>
@@ -22,7 +22,7 @@
                 <span>作者<a href="/user/<%= topic.author.name %>"><%= topic.author.name %></a></span>
                 <span><%= topic.pv %>次浏览</span>
                 <span>来自<%= topic.tab %></span>
-                <button class="button-default" style="float: right">收藏</button>
+                <button class="button-default" style="float: right" id="collectBtn">收藏</button>
             </div>
         </div>
         <hr>
@@ -48,5 +48,20 @@
 </div>
 <script>
     new SimpleMDE({element: document.getElementById('comment-block')});
+    window.onload = function () {
+        var collectBtn = document.querySelector('#collectBtn');
+        var title = document.querySelector('.article-head h1').textContent;
+        var xhr = new XMLHttpRequest();
+        collectBtn.addEventListener('click',function () {
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200){
+                    alert('收藏成功!')
+                }
+            };
+            xhr.open('POST', '/topic/addCollect', true);
+            xhr.setRequestHeader('Content-Type','application/json')
+            xhr.send(JSON.stringify({title:title}));
+        })
+    }
 </script>
 <% include footer.ejs %>

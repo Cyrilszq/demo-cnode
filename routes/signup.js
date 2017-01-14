@@ -49,7 +49,7 @@ router.post('/', checkNotLogin, upload.single('avatar'), function (req, res, nex
     var user = {
         name: name,
         password: password,
-        avatar: avatar
+        avatar: avatar || 'avatar-default.jpg'
     };
     User.getUserByName(name).then(function (u) {
         if (u) {
@@ -60,7 +60,8 @@ router.post('/', checkNotLogin, upload.single('avatar'), function (req, res, nex
                 req.session.user = {
                     name: result.name,
                     _id: result._id,
-                    avatar: result.avatar
+                    avatar: result.avatar,
+                    score: result.score
                 };
                 res.redirect('/')
             }).catch(next)

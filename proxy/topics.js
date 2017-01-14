@@ -6,7 +6,7 @@ exports.addTopic = function (data) {
 };
 
 exports.getTopicById = function (id) {
-    return Topic.findOneAndUpdate({_id: id}, {$inc: {pv: 1}}).exec();
+    return Topic.findOneAndUpdate({_id: id}, {$inc: {pv: 1}},{new: true}).exec();
 };
 
 exports.getTopics = function (options, page) {
@@ -19,8 +19,11 @@ exports.getTopicsCount = function () {
     return Topic.count()
 };
 
-
 exports.incComment = function (id) {
-    return Topic.findOneAndUpdate({_id: id}, {$inc: {comment: 1}}).exec()
+    return Topic.findOneAndUpdate({_id: id}, {$inc: {comment: 1}},{new: true}).exec()
+};
+
+exports.getAll = function () {
+    return Topic.find({}).exec()
 };
 
