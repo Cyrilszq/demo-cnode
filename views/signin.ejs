@@ -17,6 +17,7 @@
                 <input type="password" id="password" name="password" placeholder="密码">
             </div>
             <div class="field">
+                <input type='hidden' name='_csrf' value='<%= csrf %>'/>
                 <button type="submit" class="button-default">登录</button>
             </div>
         </form>

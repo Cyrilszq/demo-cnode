@@ -41,6 +41,7 @@
         </div>
         <form action="/topic/<%= topic._id %>/reply" method="post">
             <textarea name="content" id="comment-block"></textarea>
+            <input type='hidden' name='_csrf' value='<%= csrf %>'/>
             <button class="button-default" type="submit">回复</button>
         </form>
     </div>
@@ -48,20 +49,20 @@
 </div>
 <script>
     new SimpleMDE({element: document.getElementById('comment-block')});
-    window.onload = function () {
-        var collectBtn = document.querySelector('#collectBtn');
-        var title = document.querySelector('.article-head h1').textContent;
-        var xhr = new XMLHttpRequest();
-        collectBtn.addEventListener('click',function () {
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200){
-                    alert('收藏成功!')
-                }
-            };
-            xhr.open('POST', '/topic/addCollect', true);
-            xhr.setRequestHeader('Content-Type','application/json')
-            xhr.send(JSON.stringify({title:title}));
-        })
-    }
+//    window.onload = function () {
+//        var collectBtn = document.querySelector('#collectBtn');
+//        var title = document.querySelector('.article-head h1').textContent;
+//        var xhr = new XMLHttpRequest();
+//        collectBtn.addEventListener('click',function () {
+//            xhr.onreadystatechange = function () {
+//                if (xhr.readyState == 4 && xhr.status == 200){
+//                    alert('收藏成功!')
+//                }
+//            };
+//            xhr.open('POST', '/topic/addCollect', true);
+//            xhr.setRequestHeader('Content-Type','application/json')
+//            xhr.send(JSON.stringify({title:title}));
+//        })
+//    }
 </script>
 <% include footer.ejs %>

@@ -9,7 +9,9 @@
             </ul>
         </div>
         <% include notification.ejs%>
-        <form method="post" action="/signup" class="signup-form" enctype="multipart/form-data">
+        <!--这里multer和csurf中间件一起使用时验证时候会出现问题，把action写成这种形式可以暂时解决-->
+        <!--详见 https://github.com/expressjs/csurf/issues/58 -->
+        <form method="post" action="/signup?_csrf=<%= csrf%>" class="signup-form" enctype="multipart/form-data">
             <div class="field">
                 <input type="text" id="name" name="name" placeholder="用户名">
             </div>
