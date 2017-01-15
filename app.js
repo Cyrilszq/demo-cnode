@@ -8,8 +8,8 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var config = require('config-lite');
+var csrf = require('csurf');
 var routes = require('./routes/routes');
-var pkg = require('./package.json');
 
 
 var app = express();
@@ -24,9 +24,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+//开发环境关闭csrf验证
+if (!config.debug) {
+    app.use(csrf({cookie: true}));
+}
 app.use(express.static(path.join(__dirname, 'public')));
-
-
+//配置将session保存在mongodb中
 app.use(session({
     name: config.session.key,// 设置 cookie 中保存 session id 的字段名称
     secret: config.session.secret,// 通过设置 secret 来计算 hash 值并放在 cookie 中，使产生的 signedCookie 防篡改
@@ -42,18 +45,19 @@ app.use(session({
 // flash 中间价，用来显示通知
 app.use(flash());
 app.locals.blog = {
-    title: pkg.name,
-    description: pkg.description
+    title: config.name,
+    description: config.description
 };
-
 app.use(function (req, res, next) {
+    res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
     res.locals.user = req.session.user;
     res.locals.success = req.flash('success').toString();
     res.locals.error = req.flash('error').toString();
     next();
 });
-//应用路由
+//应用路由,拆分到routes/目录下了
 routes(app);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');

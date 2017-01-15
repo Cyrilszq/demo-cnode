@@ -49,7 +49,7 @@ router.post('/', checkNotLogin, upload.single('avatar'), function (req, res, nex
     var user = {
         name: name,
         password: password,
-        avatar: avatar || 'avatar-default.jpg'
+        avatar: avatar || 'avatar-default.jpg' //没有上传头像时用默认头像
     };
     User.getUserByName(name).then(function (u) {
         if (u) {

@@ -26,6 +26,7 @@
             </div>
             <textarea name="content" id="edit-block"></textarea>
             <div class="field create-field">
+                <input type='hidden' name='_csrf' value='<%= csrf %>'/>
                 <button type="submit" class="button-default">提交</button>
             </div>
 

@@ -16,13 +16,13 @@ router.post('/', checkNotLogin, function (req, res, next) {
 
     User.getUserByName(name).then(function (user) {
         if (!user) {
-            req.flash('error', '用户不存在');
-            return res.redirect('back');
+            req.flash('error', '用户名不存在');
+            return res.redirect('/signin');
         }
         // 检查密码是否匹配
         if (sha1(password) !== user.password) {
             req.flash('error', '用户名或密码错误');
-            return res.redirect('back');
+            return res.redirect('/signin');
         }
         // 将一些信息保存在session中
         req.session.user = {
