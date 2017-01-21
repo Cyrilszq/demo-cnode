@@ -12,6 +12,11 @@ router.get('/create', checkLogin, function (req, res, next) {
     res.render('edit', {title: '发表话题'})
 });
 
+//POST /topic/edit
+router.post('/edit',checkLogin,function (req, res, next) {
+   res.render('edit',{title:'编辑话题',topicTitle:req.body.title,content:req.body.content,tabValue:req.body.tabValue})
+});
+
 // POST /topic/create 处理上传的话题
 router.post('/create', checkLogin, function (req, res, next) {
     var tab = req.body.tab;
@@ -86,7 +91,6 @@ router.post('/:topic_id/reply', function (req, res, next) {
         author: req.session.user,
         content: xssfilter(marked(content))
     };
-    console.log(comment.content)
     Promise.all([
         Comment.addComment(comment),
         Topic.incComment(topic_id),
@@ -97,11 +101,11 @@ router.post('/:topic_id/reply', function (req, res, next) {
     }).catch(next)
 });
 
+// POST /topic/addCollect 处理收藏请求
 // router.post('/addCollect',function (req, res, next) {
-//     var title = req.body.title;
-//     User.addCollect(req.session.user._id,title)
+//     console.log(req.body.collectTopicId)
+//     User.addCollect(req.session.user._id,req.body.collectTopicId)
 //         .then(function (user) {
-//             console.log(user)
 //             res.sendStatus(200)
 //         });
 //
