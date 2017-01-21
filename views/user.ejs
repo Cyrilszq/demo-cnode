@@ -41,6 +41,17 @@
                 <% }) %>
             </ul>
         </div>
+
+        <div>
+            <div class="panel-header">
+                <p>收藏的话题</p>
+            </div>
+            <ul>
+                <% user.collect.forEach(function (collect) { %>
+                <li><a href="/topic/<%= collect.id%>"><%= collect.id %></a></li>
+                <% }) %>
+            </ul>
+        </div>
     </div>
 </div>
 

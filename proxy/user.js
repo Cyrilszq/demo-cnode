@@ -23,8 +23,8 @@ exports.getUserByName = function (name) {
 };
 
 
-exports.addCollect = function (id, topicTitle) {
-    return User.findOneAndUpdate({_id: id}, {$push: {'collect': topicTitle}}, {new: true}).exec();
+exports.addCollect = function (id, collectTopicId) {
+    return User.findOneAndUpdate({_id: id}, {$push: {'collect': collectTopicId}}, {new: true}).exec();
 };
 
 exports.incScore = function (id, step) {

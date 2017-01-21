@@ -8,7 +8,7 @@
             <div class="user-intro">
                 <img class="avatar" src="/img/<%= topic.author.avatar %>" alt="" width="48" height="48">
                 <a href="/user/<%= topic.author.name %>"><%= topic.author.name %></a>
-                <p>积分<%= score%></p>
+                <p>积分<%= score %></p>
                 <p>这里是个性签名</p>
             </div>
         </div>
@@ -21,13 +21,28 @@
                 <span>发布于</span>
                 <span>作者<a href="/user/<%= topic.author.name %>"><%= topic.author.name %></a></span>
                 <span><%= topic.pv %>次浏览</span>
-                <span>来自<%= topic.tab %></span>
-                <button class="button-default" style="float: right" id="collectBtn">收藏</button>
+                <span>来自<i id="tabValue"><%= topic.tab %></i></span>
+
+                <% if (user && (topic.author.name === user.name)){%>
+                <form action="/topic/edit" method="post">
+                    <input type="hidden" name="title" value="<%= topic.title%>">
+                    <input type="hidden" name="content" value="<%= topic.content%>">
+                    <input type="hidden" name="tabValue" value="<%= topic.tab%>">
+                    <button class="button-default" type="submit">编辑</button>
+                </form>
+
+                <%}%>
+                <!--<form action="/topic/addCollect" method="post">-->
+                    <!--<input type="submit"-->
+                           <!--class="button-default"-->
+                           <!--value="收藏">-->
+                <!--</form>-->
+
             </div>
         </div>
         <hr>
-        <% include notification.ejs%>
-        <article class="markdown-body">
+        <% include notification.ejs %>
+        <article class="markdown-body" id="articleContent">
             <%- topic.content %>
         </article>
     </div>
@@ -49,20 +64,28 @@
 </div>
 <script>
     new SimpleMDE({element: document.getElementById('comment-block')});
-//    window.onload = function () {
-//        var collectBtn = document.querySelector('#collectBtn');
-//        var title = document.querySelector('.article-head h1').textContent;
-//        var xhr = new XMLHttpRequest();
-//        collectBtn.addEventListener('click',function () {
-//            xhr.onreadystatechange = function () {
-//                if (xhr.readyState == 4 && xhr.status == 200){
-//                    alert('收藏成功!')
-//                }
-//            };
-//            xhr.open('POST', '/topic/addCollect', true);
-//            xhr.setRequestHeader('Content-Type','application/json')
-//            xhr.send(JSON.stringify({title:title}));
-//        })
-//    }
+//        window.onload = function () {
+//            var collectBtn = document.querySelector('#collectBtn');
+//            var editBtn = document.querySelector('#editBtn');
+//            var title = document.querySelector('.article-head h1').textContent;
+//            var content = document.querySelector('#articleContent').innerHTML;
+//            var tabValue = document.querySelector('#tabValue').textContent;
+//            var xhr = new XMLHttpRequest();
+//            editBtn.addEventListener('click', function () {
+//                xhr.onreadystatechange = function () {
+//                    if (xhr.readyState == 4 && xhr.status == 200) {
+//
+//                    }
+//                };
+//                xhr.open('POST', '/topic/edit', true);
+//                xhr.setRequestHeader('Content-Type', 'application/json')
+//                xhr.send(JSON.stringify({
+//                    title: title,
+//                    id: window.location.pathname.split('/').pop(),
+//                    content:content,
+//                    tabValue:tabValue
+//                }));
+//            })
+//        }
 </script>
 <% include footer.ejs %>

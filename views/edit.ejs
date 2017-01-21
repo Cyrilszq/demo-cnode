@@ -15,16 +15,19 @@
             <div class="field create-field">
                 <span>选择板块：</span>
                 <select name="tab">
-                    <option value="分享">分享</option>
-                    <option value="问答">问答</option>
-                    <option value="招聘">招聘</option>
+                    <% ['分享', '问答', '招聘'].forEach(function (item) { %>
+                    <option value="<%= item%>" <%= tabValue === item ? 'selected': '' %> ><%= item%></option>
+                    <% }) %>
                 </select>
             </div>
 
             <div class="field create-field">
-                <input type="text" name="title" placeholder="标题字数10字以上">
+                <input type="text" name="title" placeholder="标题字数10字以上"
+                       value="<%= typeof(topicTitle) !== 'undefined' && topicTitle || '' %>">
             </div>
-            <textarea name="content" id="edit-block"></textarea>
+            <textarea name="content" id="edit-block">
+                <%= typeof(content) !== 'undefined' && content || '' %>
+            </textarea>
             <div class="field create-field">
                 <input type='hidden' name='_csrf' value='<%= csrf %>'/>
                 <button type="submit" class="button-default">提交</button>
