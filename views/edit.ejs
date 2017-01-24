@@ -16,21 +16,25 @@
                 <span>选择板块：</span>
                 <select name="tab">
                     <% ['分享', '问答', '招聘'].forEach(function (item) { %>
-                    <option value="<%= item%>" <%= tabValue === item ? 'selected': '' %> ><%= item%></option>
+                    <option value="<%= item%>" <%= topic.tabValue === item ? 'selected': '' %> ><%= item%></option>
                     <% }) %>
                 </select>
             </div>
 
             <div class="field create-field">
-                <input type="text" name="title" placeholder="标题字数10字以上"
-                       value="<%= typeof(topicTitle) !== 'undefined' && topicTitle || '' %>">
+                <input type="text"
+                       name="title"
+                       placeholder="标题字数5字以上"
+                       id="title"
+                       value="<%= topic.topicTitle || '' %>">
             </div>
             <textarea name="content" id="edit-block">
-                <%= typeof(content) !== 'undefined' && content || '' %>
+                <%= topic.content || '' %>
             </textarea>
             <div class="field create-field">
                 <input type='hidden' name='_csrf' value='<%= csrf %>'/>
-                <button type="submit" class="button-default">提交</button>
+                <input type="hidden" name="id" value="<%= topic.id%>">
+                <button type="submit" class="button-default" id="submitBtn">提交</button>
             </div>
 
         </form>
@@ -41,5 +45,14 @@
 
 <script>
     new SimpleMDE({element: document.getElementById('edit-block')});
+    var btn = document.querySelector('#submitBtn')
+    var titleInput = document.querySelector('#title')
+    btn.addEventListener('click',function (event) {
+        if (titleInput.value.length < 5){
+            event.preventDefault()
+            alert('标题字数需5字以上')
+        }
+    })
+
 </script>
 <% include footer.ejs %>
