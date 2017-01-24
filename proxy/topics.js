@@ -5,14 +5,25 @@ exports.addTopic = function (data) {
     return topic.save();
 };
 
+exports.findAndUpdate = function (id, data) {
+    return Topic.findOneAndUpdate({_id: id}, {
+        $set: {
+            title: data.title,
+            tab: data.tab,
+            content: data.content,
+            originContent: data.originContent
+        }
+    }, {new: true}).exec();
+}
+
 exports.getTopicById = function (id) {
-    return Topic.findOneAndUpdate({_id: id}, {$inc: {pv: 1}},{new: true}).exec();
+    return Topic.findOneAndUpdate({_id: id}, {$inc: {pv: 1}}, {new: true}).exec();
 };
 
 exports.getTopics = function (options, page) {
     var query = options ? options : {};
     if (query.tab === 'all') query = {};
-    return Topic.find(query).skip((page - 1) * 15).sort('-updated_at').limit(15).exec();
+    return Topic.find(query).sort('-_id').skip((page - 1) * 15).limit(15).exec();
 };
 
 exports.getTopicsCount = function () {
@@ -20,7 +31,7 @@ exports.getTopicsCount = function () {
 };
 
 exports.incComment = function (id) {
-    return Topic.findOneAndUpdate({_id: id}, {$inc: {comment: 1}},{new: true}).exec()
+    return Topic.findOneAndUpdate({_id: id}, {$inc: {comment: 1}}, {new: true}).exec()
 };
 
 exports.getAll = function () {
