@@ -1,5 +1,5 @@
 # demo-cnode
-模仿cnode社区的一个demo，可直接访问[demo-cnode](http://cnode.cyrilszq.cn/)体验。项目整体结构模仿的是[原版cnode社区](https://github.com/cnodejs/nodeclub/)，一些设计可能没那么好，第一次写后端对后端业务逻辑不是很熟悉，有些没有思路的直接参照原版的。其中测试只编写了注册登录整个流程。
+模仿cnode社区的一个demo，可直接访问[demo-cnode](http://cnode.cyrilszq.cn/)体验。项目整体结构模仿的是[原版cnode社区](https://github.com/cnodejs/nodeclub/)，一些设计可能没那么好，第一次写后端对后端业务逻辑不是很熟悉，有些没有思路的直接参照原版的。其中测试只编写了注册登录整个流程,个人页做的比较简陋。
 
 ## 已有的功能
 - 注册登录登出

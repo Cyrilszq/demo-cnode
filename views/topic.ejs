@@ -34,6 +34,7 @@
                 <form action="/topic/<%= isCollect ? 'delCollect' : 'addCollect' %>" method="post">
                     <input type="hidden" name="topicId" value="<%= topic._id %>">
                     <input type="hidden" name="topicTitle" value="<%= topic.title %>">
+                    <input type='hidden' name='_csrf' value='<%= csrf %>'/>
                     <input type="submit"
                            class="button-default"
                            value="<%= isCollect ? '取消收藏' : '收藏' %>">
