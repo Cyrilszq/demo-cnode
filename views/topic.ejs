@@ -18,11 +18,7 @@
         <div class="article-head">
             <div>
                 <h1><%= topic.title %></h1>
-<<<<<<< HEAD
-                <span>发布于<%= date %></span>
-=======
                 <span>发布于<%= date%></span>
->>>>>>> 31b3936a22d13b1b9c40c5a50302bbafbacd60af
                 <span>作者<a href="/user/<%= topic.author.name %>"><%= topic.author.name %></a></span>
                 <span><%= topic.pv %>次浏览</span>
                 <span>来自<i id="tabValue"><%= topic.tab %></i></span>
@@ -34,7 +30,6 @@
                     <input type="hidden" name="tabValue" value="<%= topic.tab %>">
                     <button class="button-default" type="submit">编辑</button>
                 </form>
-<<<<<<< HEAD
                 <% }else if(user){ %>
                 <form action="/topic/<%= isCollect ? 'delCollect' : 'addCollect' %>" method="post">
                     <input type="hidden" name="topicId" value="<%= topic._id %>">
@@ -44,16 +39,6 @@
                            value="<%= isCollect ? '取消收藏' : '收藏' %>">
                 </form>
                 <% } %>
-=======
-
-                <% } %>
-                <!--<form action="/topic/addCollect" method="post">-->
-                <!--<input type="submit"-->
-                <!--class="button-default"-->
-                <!--value="收藏">-->
-                <!--</form>-->
-
->>>>>>> 31b3936a22d13b1b9c40c5a50302bbafbacd60af
             </div>
         </div>
         <hr>
@@ -80,28 +65,5 @@
 </div>
 <script>
     new SimpleMDE({element: document.getElementById('comment-block')});
-    //        window.onload = function () {
-    //            var collectBtn = document.querySelector('#collectBtn');
-    //            var editBtn = document.querySelector('#editBtn');
-    //            var title = document.querySelector('.article-head h1').textContent;
-    //            var content = document.querySelector('#articleContent').innerHTML;
-    //            var tabValue = document.querySelector('#tabValue').textContent;
-    //            var xhr = new XMLHttpRequest();
-    //            editBtn.addEventListener('click', function () {
-    //                xhr.onreadystatechange = function () {
-    //                    if (xhr.readyState == 4 && xhr.status == 200) {
-    //
-    //                    }
-    //                };
-    //                xhr.open('POST', '/topic/edit', true);
-    //                xhr.setRequestHeader('Content-Type', 'application/json')
-    //                xhr.send(JSON.stringify({
-    //                    title: title,
-    //                    id: window.location.pathname.split('/').pop(),
-    //                    content:content,
-    //                    tabValue:tabValue
-    //                }));
-    //            })
-    //        }
 </script>
 <% include footer.ejs %>

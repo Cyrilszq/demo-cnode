@@ -22,8 +22,6 @@ exports.getUserByName = function (name) {
     return User.findOne({name: name}).exec(); //返回一个promise对象
 };
 
-
-<<<<<<< HEAD
 exports.addCollect = function (id, collect) {
     return User.findOneAndUpdate({_id: id}, {
         $push: {
@@ -43,12 +41,6 @@ exports.delCollect = function (id, topicId) {
     }).exec()
 }
 
-=======
-exports.addCollect = function (id, collectTopicId) {
-    return User.findOneAndUpdate({_id: id}, {$push: {'collect': collectTopicId}}, {new: true}).exec();
-};
-
->>>>>>> 31b3936a22d13b1b9c40c5a50302bbafbacd60af
 exports.incScore = function (id, step) {
     return User.findOneAndUpdate({_id: id}, {$inc: {score: step}}, {new: true}).exec();
 };

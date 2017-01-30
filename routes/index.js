@@ -11,11 +11,7 @@ const tabs = {
     'all': 'all'
 };
 
-<<<<<<< HEAD
 // GET /?tab=job&page=1 主页
-=======
-// GET index 主页
->>>>>>> 31b3936a22d13b1b9c40c5a50302bbafbacd60af
 router.get('/', function (req, res,next) {
     var tab = req.query.tab || 'all';
     var page = req.query.page || 1;
