@@ -23,7 +23,6 @@ router.post('/edit/:id', checkLogin, function (req, res, next) {
             content: req.body.content,
             tabValue: req.body.tabValue
         }
-
     })
 });
 
@@ -78,6 +77,7 @@ router.post('/create', checkLogin, function (req, res, next) {
 router.get('/:id', function (req, res, next) {
     var id = req.params.id;
     var _topic;
+    var isCollect = false;
     if (id === 'index.js.map' || id.length !== 24) return next(new Error('该话题不存在'));
 
     Topic.getTopicById(id)
@@ -86,23 +86,33 @@ router.get('/:id', function (req, res, next) {
                 next(new Error('该话题不存在'))
             } else {
                 _topic = topic;
-                return Promise.all([Comment.getCommentsByTopicId(id), User.getUserByName(topic.author.name)])
+                return Promise.all([Comment.getCommentsByTopicId(id),
+                    User.getUserByName(topic.author.name),
+                    User.getUserByName(req.session.user.name)
+                ])
             }
         })
-        .then(function ([comments, user]) {
+        .then(function ([comments, author, user]) {
+            user.collect.some(function (i) {
+                if (i.topicId == _topic._id) {
+                    isCollect = true;
+                    return true
+                }
+            });
             res.render('topic', {
                 title: _topic.title,
                 topic: _topic,
                 date: moment(_topic.create_at).format('YYYY-MM-DD'),
                 comments: comments,
-                score: user.score,
+                score: author.score,
+                isCollect: isCollect
             })
         })
         .catch(next)
 });
 
 // POST /topic/:topic_id/reply 处理上传的回复
-router.post('/:topic_id/reply', function (req, res, next) {
+router.post('/:topic_id/reply', checkLogin, function (req, res, next) {
     var content = req.body.content;
     var topic_id = xssfilter(req.params.topic_id);
     var comment = {
@@ -121,13 +131,20 @@ router.post('/:topic_id/reply', function (req, res, next) {
 });
 
 // POST /topic/addCollect 处理收藏请求
-// router.post('/addCollect',function (req, res, next) {
-//     console.log(req.body.collectTopicId)
-//     User.addCollect(req.session.user._id,req.body.collectTopicId)
-//         .then(function (user) {
-//             res.sendStatus(200)
-//         });
-//
-// });
+router.post('/addCollect', checkLogin, function (req, res, next) {
+    User.addCollect(req.session.user._id, req.body)
+        .then(function (user) {
+            res.redirect('/topic/' + req.body.topicId)
+        });
+
+});
+// POST /topic/delCollect 处理取消收藏请求
+router.post('/delCollect', checkLogin, function (req, res, next) {
+    User.delCollect(req.session.user._id, req.body.topicId)
+        .then(function (user) {
+            res.redirect('/topic/' + req.body.topicId)
+        });
+
+});
 
 module.exports = router;

@@ -23,9 +23,24 @@ exports.getUserByName = function (name) {
 };
 
 
-exports.addCollect = function (id, collectTopicId) {
-    return User.findOneAndUpdate({_id: id}, {$push: {'collect': collectTopicId}}, {new: true}).exec();
+exports.addCollect = function (id, collect) {
+    return User.findOneAndUpdate({_id: id}, {
+        $push: {
+            'collect': {
+                topicId: collect.topicId,
+                topicTitle: collect.topicTitle
+            }
+        }
+    }, {new: true}).exec();
 };
+
+exports.delCollect = function (id, topicId) {
+    return User.findOneAndUpdate({_id: id}, {
+        $pull: {
+            'collect': {topicId}
+        }
+    }).exec()
+}
 
 exports.incScore = function (id, step) {
     return User.findOneAndUpdate({_id: id}, {$inc: {score: step}}, {new: true}).exec();

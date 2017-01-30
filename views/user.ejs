@@ -11,52 +11,48 @@
                 /
             </ul>
         </div>
-
-        <div class="user-intro">
+        <div class="user-intro user-section">
             <img class="avatar" src="/img/<%= user.avatar %>" alt="" width="48" height="48">
             <a href="/user/<%= user.name %>"><%= user.name %></a>
             <p>积分<%= user.score %></p>
             <p>个性签名</p>
             <p>注册时间 <%= user.createAt %></p>
         </div>
-
-        <div>
-            <div class="panel-header">
-                <p>最近创建的话题</p>
-            </div>
-            <ul>
-                <% topics.forEach(function (topic) { %>
-                <li><a href="/topic/<%= topic._id%>"><%= topic.title %></a></li>
-                <% }) %>
-            </ul>
-        </div>
-
-        <div>
-            <div class="panel-header">
-                <p>最近参与的话题</p>
-            </div>
-            <ul>
-                <% comments.forEach(function (comment) { %>
-                <li><%= comment.topic_title %></li>
-                <% }) %>
-            </ul>
-        </div>
-
-        <div>
-            <div class="panel-header">
-                <p>收藏的话题</p>
-            </div>
-            <ul>
-                <% user.collect.forEach(function (collect) { %>
-                <li><a href="/topic/<%= collect.id%>"><%= collect.id %></a></li>
-                <% }) %>
-            </ul>
-        </div>
     </div>
+    <div class="panel-left panel">
+        <div class="panel-header">
+            <p>最近创建的话题</p>
+        </div>
+        <ul>
+            <% topics.forEach(function (topic) { %>
+            <li><a href="/topic/<%= topic._id %>"><%= topic.title %></a></li>
+            <% }) %>
+        </ul>
+    </div>
+
+    <div class="panel-left panel">
+        <div class="panel-header">
+            <p>最近参与的话题</p>
+        </div>
+        <ul>
+            <% comments.forEach(function (comment) { %>
+            <li><%= comment.topic_title %></li>
+            <% }) %>
+        </ul>
+    </div>
+
+    <div class="panel-left panel">
+        <div class="panel-header">
+            <p>收藏的话题</p>
+        </div>
+        <ul>
+            <% user.collect.forEach(function (collect) { %>
+            <li><a href="/topic/<%= collect.topicId %>"><%= collect.topicTitle %></a></li>
+            <% }) %>
+        </ul>
+    </div>
+
 </div>
-
-
-
 
 
 <% include footer.ejs %>
