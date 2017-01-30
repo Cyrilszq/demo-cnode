@@ -86,14 +86,21 @@ router.get('/:id', function (req, res, next) {
                 next(new Error('该话题不存在'))
             } else {
                 _topic = topic;
-                return Promise.all([Comment.getCommentsByTopicId(id),
-                    User.getUserByName(topic.author.name),
-                    User.getUserByName(req.session.user.name)
-                ])
+                if (req.session.user) {
+                    return Promise.all([Comment.getCommentsByTopicId(id),
+                        User.getUserByName(topic.author.name),
+                        User.getUserByName(req.session.user.name)
+                    ])
+                } else {
+                    return Promise.all([Comment.getCommentsByTopicId(id),
+                        User.getUserByName(topic.author.name),
+                    ])
+                }
+
             }
         })
         .then(function ([comments, author, user]) {
-            user.collect.some(function (i) {
+            user && user.collect.some(function (i) {
                 if (i.topicId == _topic._id) {
                     isCollect = true;
                     return true
@@ -105,7 +112,7 @@ router.get('/:id', function (req, res, next) {
                 date: moment(_topic.create_at).format('YYYY-MM-DD'),
                 comments: comments,
                 isCollect: isCollect,
-                score: user.score,
+                score: author.score,
             })
         }).catch(next)
 });
