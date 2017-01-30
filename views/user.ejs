@@ -11,13 +11,19 @@
                 /
             </ul>
         </div>
+<<<<<<< HEAD
         <div class="user-intro user-section">
+=======
+
+        <div class="user-intro">
+>>>>>>> 31b3936a22d13b1b9c40c5a50302bbafbacd60af
             <img class="avatar" src="/img/<%= user.avatar %>" alt="" width="48" height="48">
             <a href="/user/<%= user.name %>"><%= user.name %></a>
             <p>积分<%= user.score %></p>
             <p>个性签名</p>
             <p>注册时间 <%= user.createAt %></p>
         </div>
+<<<<<<< HEAD
     </div>
     <div class="panel-left panel">
         <div class="panel-header">
@@ -55,4 +61,46 @@
 </div>
 
 
+=======
+
+        <div>
+            <div class="panel-header">
+                <p>最近创建的话题</p>
+            </div>
+            <ul>
+                <% topics.forEach(function (topic) { %>
+                <li><a href="/topic/<%= topic._id%>"><%= topic.title %></a></li>
+                <% }) %>
+            </ul>
+        </div>
+
+        <div>
+            <div class="panel-header">
+                <p>最近参与的话题</p>
+            </div>
+            <ul>
+                <% comments.forEach(function (comment) { %>
+                <li><%= comment.topic_title %></li>
+                <% }) %>
+            </ul>
+        </div>
+
+        <div>
+            <div class="panel-header">
+                <p>收藏的话题</p>
+            </div>
+            <ul>
+                <% user.collect.forEach(function (collect) { %>
+                <li><a href="/topic/<%= collect.id%>"><%= collect.id %></a></li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+>>>>>>> 31b3936a22d13b1b9c40c5a50302bbafbacd60af
 <% include footer.ejs %>

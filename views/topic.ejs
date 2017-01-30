@@ -18,7 +18,11 @@
         <div class="article-head">
             <div>
                 <h1><%= topic.title %></h1>
+<<<<<<< HEAD
                 <span>发布于<%= date %></span>
+=======
+                <span>发布于<%= date%></span>
+>>>>>>> 31b3936a22d13b1b9c40c5a50302bbafbacd60af
                 <span>作者<a href="/user/<%= topic.author.name %>"><%= topic.author.name %></a></span>
                 <span><%= topic.pv %>次浏览</span>
                 <span>来自<i id="tabValue"><%= topic.tab %></i></span>
@@ -30,6 +34,7 @@
                     <input type="hidden" name="tabValue" value="<%= topic.tab %>">
                     <button class="button-default" type="submit">编辑</button>
                 </form>
+<<<<<<< HEAD
                 <% }else if(user){ %>
                 <form action="/topic/<%= isCollect ? 'delCollect' : 'addCollect' %>" method="post">
                     <input type="hidden" name="topicId" value="<%= topic._id %>">
@@ -39,6 +44,16 @@
                            value="<%= isCollect ? '取消收藏' : '收藏' %>">
                 </form>
                 <% } %>
+=======
+
+                <% } %>
+                <!--<form action="/topic/addCollect" method="post">-->
+                <!--<input type="submit"-->
+                <!--class="button-default"-->
+                <!--value="收藏">-->
+                <!--</form>-->
+
+>>>>>>> 31b3936a22d13b1b9c40c5a50302bbafbacd60af
             </div>
         </div>
         <hr>

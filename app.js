@@ -19,7 +19,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
+<<<<<<< HEAD
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+=======
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+>>>>>>> 31b3936a22d13b1b9c40c5a50302bbafbacd60af
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -44,12 +48,18 @@ app.use(session({
 }));
 // flash 中间价，用来显示通知
 app.use(flash());
+<<<<<<< HEAD
 // 添加全局变量
+=======
+>>>>>>> 31b3936a22d13b1b9c40c5a50302bbafbacd60af
 app.locals.blog = {
     title: config.name,
     description: config.description
 };
+<<<<<<< HEAD
 // 添加全局变量
+=======
+>>>>>>> 31b3936a22d13b1b9c40c5a50302bbafbacd60af
 app.use(function (req, res, next) {
     res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
     res.locals.user = req.session.user;
