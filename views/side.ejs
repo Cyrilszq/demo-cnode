@@ -7,9 +7,11 @@
         <div class="user-intro">
             <img class="avatar" src="/img/<%= user.avatar %>" alt="" width="48" height="48">
             <a href="/user/<%= user.name %>"><%= user.name %></a>
-            <p>积分<%= user.score%></p>
+            <p>积分<%= user.score %></p>
             <p>个性签名</p>
-            <a href="/topic/create"><button class="button-default">发布话题</button></a>
+            <a href="/topic/create">
+                <button class="button-default">发布话题</button>
+            </a>
         </div>
     </div>
     <% }else { %>
@@ -20,7 +22,9 @@
             <p>介绍</p>
         </div>
         <div>
-            <p style="padding: 10px">个人demo，参考<a href="https://github.com/cnodejs/nodeclub" target="_blank">nodeclub</a></p>
+            <p style="padding: 10px">个人demo，参考<a href="https://github.com/cnodejs/nodeclub" target="_blank">nodeclub</a><br>
+                <a href="https://github.com/Cyrilszq/demo-cnode" target="_blank">源码地址在这</a>，欢迎star
+            </p>
         </div>
     </div>
     <div class="side-panel panel">
